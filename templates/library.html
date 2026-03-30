@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% block content %}
+    <h2>Управление библиотекой</h2>
+    <form action="/add_book" method="post" style="display: flex; flex-direction: column; gap: 10px; margin-bottom: 30px;">
+        <input type="text" name="title" placeholder="Название книги" required>
+        <input type="text" name="author" placeholder="Автор" required>
+        <input type="number" name="year" placeholder="Год издания" required>
+        <input type="text" name="image_url" placeholder="Ссылка на обложку (URL)">
+        <textarea name="description" placeholder="Краткое описание"></textarea>
+        <button type="submit" style="background: green; color: white; padding: 10px;">Добавить книгу</button>
+    </form>
+
+    <h3>Список книг:</h3>
+    <div style="display: grid; gap: 20px;">
+        {% for book in books %}
+        <div style="border: 1px solid #ccc; padding: 15px; display: flex; gap: 20px; align-items: center;">
+            <img src="{{ book.image_url }}" alt="cover" style="width: 80px; height: 120px; object-fit: cover; background: #eee;">
+            <div>
+                <h4>{{ book.title }}</h4>
+                <p>Автор: {{ book.author }}</p>
+                <a href="/book/{{ book.id }}">Подробнее</a>
+                <form action="/delete/{{ book.id }}" method="post" style="margin-top: 10px;">
+                    <button type="submit" style="color: red; border: none; background: none; cursor: pointer;">Удалить</button>
+                </form>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+{% endblock %}

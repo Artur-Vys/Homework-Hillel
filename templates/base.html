@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Моя Библиотека</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <header style="background: #333; padding: 15px; color: white;">
+        <nav>
+            <a href="/" style="color: white; margin-right: 15px;">Главная</a>
+            <a href="/author" style="color: white; margin-right: 15px;">Об авторе</a>
+            <a href="/library" style="color: white;">Библиотека</a>
+        </nav>
+    </header>
+    <main style="padding: 20px; max-width: 800px; margin: 0 auto;">
+        {% block content %}{% endblock %}
+    </main>
+</body>
+</html>
